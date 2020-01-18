@@ -15,7 +15,7 @@
 			if ( isset( $_SERVER['REQUEST_URI'] ) ) {
 				$url = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) );
 			}
-			
+
 			$current_event_type_term = get_query_var( 'event_taxonomy' );
 			$current_news_type_term  = get_query_var( 'news_taxonomy' );
 			?>
@@ -44,11 +44,7 @@
 						">
 							<a href="
 								<?php
-								if ( '' === $current_news_type_term ) {
-									echo '';
-								} else {
-									echo esc_url( get_news_archive_link( 'all', $current_news_type_term ) );
-								}
+									echo esc_url( get_news_archive_link( null, $current_news_type_term ) );
 								?>
 							">
 								すべて
@@ -74,11 +70,7 @@
 							">
 								<a href="
 									<?php
-									if ( '' === $current_news_type_term ) {
-										echo esc_url( get_news_archive_link( $event_term->slug, 'all' ) );
-									} else {
 										echo esc_url( get_news_archive_link( $event_term->slug, $current_news_type_term ) );
-									}
 									?>
 								">
 									<?php echo esc_html( $event_term->name ); ?>
@@ -102,11 +94,7 @@
 						">
 							<a href="
 								<?php
-								if ( '' === $current_event_type_term ) {
-									echo '';
-								} else {
-									echo esc_url( get_news_archive_link( $current_event_type_term, 'all' ) );
-								}
+									echo esc_url( get_news_archive_link( $current_event_type_term, null ) );
 								?>
 							">
 								すべて
@@ -132,11 +120,7 @@
 							">
 								<a href="
 									<?php
-									if ( '' === $current_event_type_term ) {
-										echo esc_url( get_news_archive_link( 'all', $news_term->slug ) );
-									} else {
 										echo esc_url( get_news_archive_link( $current_event_type_term, $news_term->slug ) );
-									}
 									?>
 								">
 									<?php echo esc_html( $news_term->name ); ?>
